@@ -67,13 +67,14 @@ export default function NoteForm() {
                 className={css.textarea}
                 defaultValue={draft?.content}
                 onChange={handleChange}
+                required
               />
               {/* <ErrorMessage component="span" name="content" className={css.error} /> */}
             </div>
 
             <div className={css.formGroup}>
               <label htmlFor="tag">Tag</label>
-              <select id="tag" name="tag" className={css.select} onChange={handleChange} defaultValue={draft?.tag}>
+              <select id="tag" name="tag" className={css.select} onChange={handleChange} defaultValue={draft?.tag} required>
                 <option value="Todo">Todo</option>
                 <option value="Work">Work</option>
                 <option value="Personal">Personal</option>
