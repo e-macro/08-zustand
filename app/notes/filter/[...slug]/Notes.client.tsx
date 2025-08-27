@@ -2,8 +2,9 @@
 import NoteList from "@/components/NoteList/NoteList";
 import Pagination from "@/components/Pagination/Pagination";
 import SearchBox from "@/components/SearchBox/SearchBox";
-import Modal from "@/components/Modal/Modal";
-import NoteForm from "@/components/NoteForm/NoteForm";
+// import Modal from "@/components/Modal/Modal";
+// import NoteForm from "@/components/NoteForm/NoteForm";
+import { useRouter } from "next/navigation";
 import {useQuery, keepPreviousData} from "@tanstack/react-query";
 import {useDebouncedCallback} from "use-debounce";
 import {fetchNotes, type NoteResponse } from "@/lib/api";
@@ -15,12 +16,13 @@ type NoteListClientProps = {
 };
 
 const NoteListClient = ({ tag }: NoteListClientProps) => {
+  const router = useRouter();
   const [query, setQuery] = useState('');
   const [debouncedQuery, setDebouncedQuery] = useState('');
   const [page, setPage] = useState(1);
-  const [isModalOpen, setModalOpen] = useState(false);
-  const openModal = () => setModalOpen(true);
-  const closeModal = () => setModalOpen(false);
+  // const [isModalOpen, setModalOpen] = useState(false);
+  // const openModal = () => setModalOpen(true);
+  // const closeModal = () => setModalOpen(false);
   const debouncedSetQuery = useDebouncedCallback((value: string) => {
     setDebouncedQuery(value);
   }, 300);
@@ -45,11 +47,11 @@ const NoteListClient = ({ tag }: NoteListClientProps) => {
       <header className={css.toolbar}>
           <SearchBox searchQuery={query} onUpdate={handleInputChange}/>
           {totalPages> 1 && <Pagination totalPages={totalPages} page={page} setPage={setPage}/>}
-          <button className={css.button} onClick={openModal}>Create note +</button>
+          <button className={css.button} onClick={() => router.push('/notes/action/create')}>Create note +</button>
       </header>
-      {isModalOpen && <Modal onClose={closeModal}>
+      {/* {isModalOpen && <Modal onClose={closeModal}>
         <NoteForm onClose={closeModal}/>
-      </Modal>}
+      </Modal>} */}
       {data?.notes && <NoteList notes={data?.notes}/>}
     </div>
   );
