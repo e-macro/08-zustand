@@ -54,7 +54,7 @@ export default function NoteForm() {
             <div className={css.formGroup}>
               <label htmlFor="title">Title</label>
               <input id="title" type="text" name="title" className={css.input}
-              defaultValue={draft?.title} onChange={handleChange}/>
+              value={draft?.title} onChange={handleChange}/>
               {/* <ErrorMessage component="span" name="title" className={css.error} /> */}
             </div>
 
@@ -65,7 +65,7 @@ export default function NoteForm() {
                 name="content"
                 rows={8}
                 className={css.textarea}
-                defaultValue={draft?.content}
+                value={draft?.content}
                 onChange={handleChange}
                 required
               />
@@ -74,7 +74,7 @@ export default function NoteForm() {
 
             <div className={css.formGroup}>
               <label htmlFor="tag">Tag</label>
-              <select id="tag" name="tag" className={css.select} onChange={handleChange} defaultValue={draft?.tag} required>
+              <select id="tag" name="tag" className={css.select} onChange={handleChange} value={draft?.tag} required>
                 <option value="Todo">Todo</option>
                 <option value="Work">Work</option>
                 <option value="Personal">Personal</option>
@@ -85,7 +85,7 @@ export default function NoteForm() {
             </div>
 
             <div className={css.actions}>
-              <button type="button" className={css.cancelButton} onClick={() => router.push('/notes/filter/All')}>
+              <button type="button" className={css.cancelButton} onClick={() => router.back()}>
                 Cancel
               </button>
               <button

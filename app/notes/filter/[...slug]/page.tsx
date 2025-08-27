@@ -2,13 +2,14 @@ import css from "./NotesPage.module.css";
 import NoteListClient from "./Notes.client";
 import { QueryClient, HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import { fetchNotes } from "@/lib/api";
+import { Metadata } from "next";
 
 
 type Props = {
   params: Promise<{ slug: string[] }>;
 };
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   return {
     title: slug[0] === 'All' ? "All Notes" : `${slug[0]} Notes`,
